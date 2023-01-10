@@ -1,6 +1,7 @@
-# Getting Started with Create React App
+# About the Project
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project is a simple calcultor web application with multiply pages. It supports `+`, `-`, `*`, `/`, `=`, `clear`, `delete`. \
+It has `signup`, `login`, `logout` functionalities, only people who are signed in can use the calculator.
 
 ## Available Scripts
 
