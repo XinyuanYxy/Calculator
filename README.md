@@ -1,7 +1,8 @@
 # About the Project
 
 This project is a simple calcultor web application with multiply pages. It supports `+`, `-`, `*`, `/`, `=`, `clear`, `delete`. \
-It has `signup`, `login`, `logout` functionalities, only people who are signed in can use the calculator.
+It has `signup`, `login`, `logout` functionalities, only people who are signed in can use the calculator. \
+Django is used as the backend for this project located in another repository.
 
 ## Available Scripts
 
