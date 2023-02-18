@@ -1,7 +1,62 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import $ from "jquery";
 class Navbar extends Component {
   state = {};
+  render_calculator = () => {
+    if (this.props.is_loggedIn)
+      return (
+        <li className="nav-item">
+          <Link className="nav-link" to="/calculator">
+            Calculator
+          </Link>
+        </li>
+      );
+    return "";
+  };
+  handleLogOut = () => {
+    $.ajax({
+      url: "http://127.0.0.1:8000/logout/",
+      type: "get",
+      success: (res) => {
+        if (res.result === "success") {
+          window.location.href = "/home";
+        }
+      },
+    });
+  };
+  render_user = () => {
+    if (!this.props.is_loggedIn) {
+      return (
+        <ul className="navbar-nav ">
+          <li className="nav-item">
+            <Link className="nav-link " aria-current="page" to="/login">
+              login
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link className="nav-link" to="/register">
+              register
+            </Link>
+          </li>
+        </ul>
+      );
+    }
+    return (
+      <ul className="navbar-nav ">
+        <li className="nav-item">
+          <Link className="nav-link " aria-current="page" to="/">
+            {this.props.username}
+          </Link>
+        </li>
+        <li className="nav-item">
+          <Link onClick={this.handleLogOut} className="nav-link">
+            Log out
+          </Link>
+        </li>
+      </ul>
+    );
+  };
   render() {
     return (
       <React.Fragment>
@@ -28,24 +83,9 @@ class Navbar extends Component {
                     Home
                   </Link>
                 </li>
-                <li className="nav-item">
-                  <Link className="nav-link" to="/calculator">
-                    Calculator
-                  </Link>
-                </li>
+                {this.render_calculator()}
               </ul>
-              <ul className="navbar-nav ">
-                <li className="nav-item">
-                  <Link className="nav-link " aria-current="page" to="/login">
-                    login
-                  </Link>
-                </li>
-                <li className="nav-item">
-                  <Link className="nav-link" to="/register">
-                    register
-                  </Link>
-                </li>
-              </ul>
+              {this.render_user()}
             </div>
           </div>
         </nav>
